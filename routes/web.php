@@ -18,3 +18,7 @@ Route::get('/user-login', function () {
     return view('user_login');
 })->name('user_login');
 
+Route::post('edit_user_info', [App\Http\Controllers\AnketController::class, 'edit_user_info']);
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');

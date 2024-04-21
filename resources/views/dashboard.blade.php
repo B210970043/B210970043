@@ -56,25 +56,56 @@
 
 </header>
 <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Мэдээлэл</h5>
+  <form id="edit_user_info" action='edit_user_info' method="POST">
+    @csrf
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Мэдээлэл</h5>
 
-          <p class="card-text">First Name: {{ $user['first_name'] }}</p>
-          <p class="card-text">Last Name: {{ $user['last_name'] }}</p>
-          <p class="card-text">Age: {{ $user['age'] }}</p>
-          <p class="card-text">Phone Number: {{ $user['phone_number'] }}</p>
-          <p class="card-text">Address: {{ $user['address'] }}</p>
-          <p class="card-text">Aimag: {{ $user['aimag_ner'] }}</p>
-          <p class="card-text">Sum: {{ $user['sum_ner'] }}</p>
-          <button>Мэдээллээ засах</button>
-        </div>
+                      <div id="userInfo">
+                          <p class="cart-text">Id: {{ $user['id'] }}</p>
+                          <p class="cart-text">First Name: {{ $user['first_name'] }}</p>
+                          <p class="cart-text">Last Name: {{ $user['last_name'] }}</p>
+                          <p class="cart-text">Age: {{ $user['age'] }}</p>
+                          <p class="cart-text">Phone Number: {{ $user['phone_number'] }}</p>
+                          <p class="cart-text">Address: {{ $user['address'] }}</p>
+                          <p class="cart-text">Aimag: {{ $user['aimag_ner'] }}</p>
+                          <p class="cart-text">Sum: {{ $user['sum_ner'] }}</p>
+                      </div>
+
+                      <div id="editInfo" style="display: none;">
+                          <input type="text" class="form-control" name="id" value="{{ $user['id'] }}" readonly><br>
+                          <input type="text" class="form-control" name="first_name" value="{{ $user['first_name'] }}" placeholder="First Name"><br>
+                          <input type="text" class="form-control" name="last_name" value="{{ $user['last_name'] }}" placeholder="Last Name"><br>
+                          <input type="number" class="form-control" name="age" value="{{ $user['age'] }}" placeholder="Age"><br>
+                          <input type="text" class="form-control" name="phone_number" value="{{ $user['phone_number'] }}" placeholder="Phone Number"><br>
+                          <input type="text" class="form-control" name="address" value="{{ $user['address'] }}" placeholder="Address"><br>
+                          <input type="text" class="form-control" name="aimag_ner" value="{{ $user['aimag_ner'] }}" placeholder="Aimag" readonly><br>
+                          <input type="text" class="form-control" name="sum_ner" value="{{ $user['sum_ner'] }}" placeholder="Sum" readonly><br>
+                      </div>
+
+                      <button type="button" id="editButton" class="btn btn-primary">Edit</button>
+                      <button type="submit" id="saveButton" style="display: none;" class="btn btn-primary">Save</button>
+
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-  </div>
+  </form>
 </div>
+
+<script>
+    document.getElementById('editButton').addEventListener('click', function() {
+        document.getElementById('userInfo').style.display = 'none';
+        document.getElementById('editInfo').style.display = 'block';
+        document.getElementById('editButton').style.display = 'none';
+        document.getElementById('saveButton').style.display = 'block';
+    });
+</script>
+
 </body>
+
 </html>
 

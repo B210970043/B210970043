@@ -20,6 +20,7 @@ class LoginController extends Controller
 
         if ($user) {
             $userInformation = [
+                'id' => $user->id,
                 'first_name' => $user->user_first_name,
                 'last_name' => $user->user_last_name,
                 'age' => $user->user_age,
