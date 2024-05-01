@@ -19,7 +19,6 @@ class AnketController extends Controller
         if ($existUser) {
             return redirect('/')->with('error', 'Burtgeltei utas baina!!');
         } else {
-            $data->user = $request->input('user_first_name');
             $data->user_first_name = $request->input('user_first_name');
             $data->user_last_name = $request->input('user_last_name');
             $data->user_age = $request->input('user_age');
@@ -31,6 +30,8 @@ class AnketController extends Controller
             return redirect()->route('user_login')->with('success', 'Amjilttai!');
         }
     }
+    
+
     public function edit_user_info(Request $request){
         $id = $request->input('id');
         $user_first_name = $request->input('first_name');
@@ -38,10 +39,9 @@ class AnketController extends Controller
         $user_age = $request->input('age');
         $user_phone_number = $request->input('phone_number');
         $user_address = $request->input('address');
-    
+        
         Anket::edit_user($id,$user_first_name, $user_last_name, $user_age, $user_phone_number, $user_address);
     
         return redirect()->route('user_login')->with('success', 'Medeelel amjilttai shinechlegdlee!');
     }
 }
-

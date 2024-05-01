@@ -1,24 +1,23 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AimagController;
-use App\Http\Controllers\Anket;
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', [AimagController::class, 'index']);
+Route::get('/', function () {
+    return view('terms/terms');
+});
 
-Route::post('store_data', [App\Http\Controllers\AnketController::class, 'store_data']);
-Route::post('user_login', [App\Http\Controllers\LoginController::class, 'user_login']);
-Route::get('/fetch/{aimag_id}', [App\Http\Controllers\SumController::class, 'fetchSums']);
-Route::get('/user-login', function () {
-    return view('user_login');
-})->name('user_login');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('edit_user_info', [App\Http\Controllers\AnketController::class, 'edit_user_info']);
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/add_more_info', [AimagController::class, 'index']);
+});
+
+require __DIR__.'/auth.php';

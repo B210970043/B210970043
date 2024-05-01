@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aimag;
-use App\Models\Sum; // Don't forget to import the Sum model
+use App\Models\Sum; 
 use Illuminate\Http\Request;
+use Auth;
 
 class AimagController extends Controller
 {
     public function index()
     {
-        $aimags = Aimag::all();
+        $aimags = Aimag::All();
+        return view('notUsing/home', ['aimags' => $aimags]);
 
-        return view('home', ['aimags' => $aimags]);
+        //Auth::check()  Auth::id() Auth::user()->name  
+        // auth()->user()->id
+
     }
 }

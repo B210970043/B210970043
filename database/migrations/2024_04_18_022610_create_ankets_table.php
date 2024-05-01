@@ -14,20 +14,19 @@ return new class extends Migration
     {
         Schema::create('ankets', function (Blueprint $table) {
             $table->id();
-            $table->string('user_first_name');
-            $table->string('user_last_name');
             $table->integer('user_age')->nullable();
             $table->string('user_phone_number')->nullable();
             $table->string('user_address')->nullable();
             $table->unsignedBigInteger('aimag_id');
             $table->unsignedBigInteger('sum_id');
-
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('aimag_id')->references('id')->on('aimags');
             $table->foreign('sum_id')->references('id')->on('sums');
-
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
+    
     /**
      * Reverse the migrations.
      */

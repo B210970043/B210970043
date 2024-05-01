@@ -12,5 +12,6 @@ class SumController extends Controller
         $data = Sum::where('aimag_id', $aimag_id)->get();
         return response()->json($data);
     }
+
 }
 

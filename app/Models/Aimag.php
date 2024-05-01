@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Sum;
+use App\Models\Anket;
 
 class Aimag extends Model
 {
@@ -13,16 +15,10 @@ class Aimag extends Model
     {
         return $this->hasMany(Sum::class);
     }
-    public static function getAimagNer($aimag_id)
+    public function ankets()
     {
-        $aimag = self::find($aimag_id);
-        if ($aimag) {
-            return $aimag->aimag_ner;
-        } else {
-            return null;
-        }
+        return $this->hasMany(Anket::class);
     }
-    
 }
 
 
